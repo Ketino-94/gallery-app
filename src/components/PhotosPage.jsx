@@ -1,23 +1,25 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
-import AppContextHOC from "./HOC/AppContextHOC";
+import Search from './Search';
 
 class PhotosPage extends React.Component {
 
+
   render() {
-    const { arrPhotos} = this.props;
-    console.log(typeof +this.props.match.params.id)
+    const { search, photosFilter} = this.props;
     return (
-      <div className="container">
+      <div className="container mt-4">
+        <Search 
+          onChange={this.onChange} 
+          value={search} />
         <div className="row">
-          {arrPhotos.filter(id => {
-            console.log(typeof +id.albumId)
+          {photosFilter.filter(id => {
             return id.albumId === +this.props.match.params.id
-          })
+            })
             .map(item => {
               return (
-                <div key={item.id} className="col col-lg-2 image-item mb-2">
-                  <img className="card-img-top" src={item.thumbnailUrl} alt="" />
+                <div key={item.id} className="col col-lg-2 mb-2">
+                  <img className="card-img-top" src={item.thumbnailUrl} alt={item.title} />
                   <div className="image-title">{item.title}</div>
                 </div>
               )
@@ -29,4 +31,4 @@ class PhotosPage extends React.Component {
   }
 }
 
-export default AppContextHOC(PhotosPage);
+export default PhotosPage;
