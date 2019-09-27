@@ -10,13 +10,13 @@ import { Link } from "react-router-dom"
 @observer
 class PhotosPage extends React.Component {
   componentDidMount() {
-    const { photosByAlbum, albums, getPhotos, getAlbums } = this.props.store
+    const { photosByAlbum, albums, fetchPhotos, fetchAlbums } = this.props.store
     window.scrollTo(0, 0);
     if (!photosByAlbum.length) {
-      getPhotos()
+      fetchPhotos()
     }
     if (!albums.length) {
-      getAlbums()
+      fetchAlbums()
     }
   }
 

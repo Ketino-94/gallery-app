@@ -15,7 +15,7 @@ class Store {
 
   @action
   getAlbum = (id) => {
-    const currentAlbum = this.albums.find(item => item.id === +id)
+    const currentAlbum  = this.albums.find(item => item.id === +id)
     return currentAlbum.title
   }
 
@@ -30,7 +30,7 @@ class Store {
   }
 
   @action
-  getPhotos = () => {
+  fetchPhotos = () => {
     fetch('https://jsonplaceholder.typicode.com/photos')
       .then(response => response.json())
       .then(result => {
@@ -39,7 +39,7 @@ class Store {
   }
 
   @action
-  getAlbums = () => {
+  fetchAlbums= () => {
     fetch('https://jsonplaceholder.typicode.com/albums')
       .then(response => response.json())
       .then(result => {

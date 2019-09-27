@@ -1,5 +1,4 @@
 import React from 'react';
-import '../stylesheets/app.css';
 import { observer, inject } from 'mobx-react'
 import { Link } from "react-router-dom";
 
@@ -10,12 +9,12 @@ import { Link } from "react-router-dom";
 @observer
 class App extends React.Component {
   componentDidMount() {
-    const { photosByAlbum, albums, getPhotos, getAlbums } = this.props.store
+    const { photosByAlbum, albums, fetchPhotos, fetchAlbums } = this.props.store
     if (!photosByAlbum.length) {
-      getPhotos()
+      fetchPhotos()
     }
     if (!albums.length) {
-      getAlbums()
+      fetchAlbums()
     }
   }
 

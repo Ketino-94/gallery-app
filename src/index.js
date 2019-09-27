@@ -6,7 +6,7 @@ import store from './components/store/store'
 import { Provider } from 'mobx-react'
 import PhotosPage from './components/PhotosPage';
 import 'bootstrap/dist/css/bootstrap.css';
-import '../stylesheets/app.css'
+import './stylesheets/app.css';
 
 ReactDOM.render((
   <BrowserRouter>

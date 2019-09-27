@@ -132,11 +132,6 @@
       "jest-watch-typeahead/testname"
     ]
   },
-  "babel": {
-    "presets": [
-      "react-app"
-    ]
-  },
   "devDependencies": {
     "@babel/plugin-proposal-decorators": "^7.6.0"
   }
