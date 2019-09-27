@@ -1,25 +1,22 @@
-import React from 'react';
-import 'bootstrap/dist/css/bootstrap.css';
+import React from 'react'
 
-class Search extends React.Component {
-
+export default class Search extends React.Component {
   render() {
-    const { onChange, search} = this.props;
-    console.log(this.props)
+    const { onChange, search } = this.props
     return (
-      <form className="search-form">
-        <div className="form-group">
-          <input  
-            type="text" 
-            className="form-control"  
-            placeholder="Search" 
-            name="search"
-            value={search}
-            onChange={onChange} />
-        </div>
-      </form>
-    );
+      <div className="row">
+        <form className='col'>
+          <div className="form-group">
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Search photos"
+              name="search"
+              value={search}
+              onChange={onChange} />
+          </div>
+        </form>
+      </div>
+    )
   }
 }
-
-export default Search;

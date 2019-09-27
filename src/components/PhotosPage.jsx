@@ -1,40 +1,59 @@
-import React from 'react';
-import 'bootstrap/dist/css/bootstrap.css';
-import Search from './Search';
-import AppContextHOC from "./HOC/AppContextHOC";
+import React from 'react'
+import { observer, inject } from 'mobx-react'
+import Search from './Search'
+import { Link } from "react-router-dom"
 
+@inject(stores => ({
+  store: stores.store,
+}))
+
+@observer
 class PhotosPage extends React.Component {
+  componentDidMount() {
+    const { photosByAlbum, albums, getPhotos, getAlbums } = this.props.store
+    window.scrollTo(0, 0);
+    if (!photosByAlbum.length) {
+      getPhotos()
+    }
+    if (!albums.length) {
+      getAlbums()
+    }
+  }
+
 
   render() {
-    const { search, photosFilter} = this.props;
-    return photosFilter ? (
-      <div className="container ">
-        <div className="card border-info mb-3">
-          <div className="card-header">
-            <Search 
-            onChange={this.onChange} 
-            value={search} />
-          </div>
-          <div className="row card-body text-info">
-            {photosFilter.filter(id => {
-              return id.albumId === +this.props.match.params.id
-              })
+    const { store: { search, getAlbum, photosByAlbum, updateSearch }, match: { params: { id } } } = this.props
+    if (!photosByAlbum.length && !search.length) {
+      return <div className='loading'>Loading...</div>
+    }
+    return (
+      <div className="container mt-4">
+        <div className="back mb-4">
+          <Link to={"/"}>← Back to Albums</Link>
+        </div>
+        <h1 className='mt-5'>{getAlbum(id)}</h1>
+        <Search
+          onChange={updateSearch}
+          value={search} />
+        <div className="row">
+          {photosByAlbum.length
+            ? photosByAlbum.filter(photo => {
+              return photo.albumId === +id
+            })
               .map(item => {
                 return (
                   <div key={item.id} className="col col-lg-2 mb-2">
-                    <img className="card-img-top" src={item.thumbnailUrl} alt={item.title} />
+                    <img className="image-photo" src={item.thumbnailUrl} alt={item.title} />
                     <div className="image-title">{item.title}</div>
                   </div>
                 )
               })
-            }
-          </div>
+            : <p className='col'>No results found matching your criteria</p>
+          }
         </div>
       </div>
-    ) : (
-      <div> Loading ...</div>
-    );
+    )
   }
 }
 
-export default AppContextHOC(PhotosPage);
+export default PhotosPage
