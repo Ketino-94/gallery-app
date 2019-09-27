@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
-import { Link} from "react-router-dom";
+import { BrowserRouter, Route } from "react-router-dom";
 import AlbumPage from './AlbumPage';
 import PhotosPage from './PhotosPage';
 
@@ -13,6 +13,7 @@ class App extends React.Component {
     albums: [],
     photosFilter: [],
     search: '',
+    
   }
 
   getPhotos = () => {
@@ -59,20 +60,13 @@ class App extends React.Component {
   render() {
     const { albums, photosFilter, photos, search} = this.state ;
     return (
-      <div className="container">
-        <h1> Gallery </h1>
-        <div className="row">
-          {albums.map(album => {
-            return (
-              <div key={album.id} className="col col-lg-6 image-item mb-2">
-                <Link className="image-title" to={`/photos/${album.id}`}>{album.title}</Link>
-              </div>
-            )
-          })
-          }
-        </div>
-      </div>
-    );
+      <BrowserRouter>
+        <AppContext.Provider value={{ albums, photosFilter, photos, search }} >
+          <Route exact path="/" component={AlbumPage} />
+          <Route path="/photos/:id" component={PhotosPage} />
+        </AppContext.Provider>
+      </BrowserRouter>
+    ) 
   }
 }
 

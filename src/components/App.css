@@ -20,3 +20,19 @@
 .App-link {
   color: #09d3ac;
 }
+.card-text {
+  text-transform: capitalize;
+  color: #17a2b8;
+}
+.albums-wrap > div {
+  display: list-item;
+}
+
+.albums-wrap {
+  margin-left: 35px  !important;
+}
+
+.search-form {
+  max-width: 200px;
+  float: right;
+}

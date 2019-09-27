@@ -7,21 +7,17 @@ class Search extends React.Component {
     const { onChange, search} = this.props;
     console.log(this.props)
     return (
-      <div className="container ">
-        <div className="row">
-          <form>
-            <div className="form-group">
-              <input  
-                type="text" 
-                className="form-control"  
-                placeholder="Search" 
-                name="search"
-                value={search}
-                onChange={onChange} />
-            </div>
-          </form>
+      <form className="search-form">
+        <div className="form-group">
+          <input  
+            type="text" 
+            className="form-control"  
+            placeholder="Search" 
+            name="search"
+            value={search}
+            onChange={onChange} />
         </div>
-      </div>
+      </form>
     );
   }
 }

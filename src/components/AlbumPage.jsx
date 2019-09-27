@@ -7,19 +7,20 @@ class AlbumPage extends React.Component {
 
   render() {
     const { albums} = this.props;
-    console.log(this.props)
     return (
       <div className="container">
-        <h1> Gallery </h1>
-        <div className="row">
-          {albums.map(album => {
-              return (
-                <div key={album.id} className="col col-lg-6 image-item mb-2">
-                  <Link className="image-title" to={`/photos/${album.id}`}>{album.title}</Link>
-                </div>
-              )
-            })
-          }
+        <div className="card border-info mb-3">
+          <h1 className="card-header text-center"> Albums </h1>
+          <div className="row card-body text-info albums-wrap">
+            {albums.map(album => {
+                return (
+                  <div key={album.id} className="col col-lg-6 mb-2">
+                      <Link className="card-text" to={`/photos/${album.id}`}>{album.title}</Link>
+                  </div>
+                )
+              })
+            }
+          </div>
         </div>
       </div>
     );
